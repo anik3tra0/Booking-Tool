@@ -1,0 +1,32 @@
+<%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_name %><br>
+    <%= f.text_field :user_name %>
+  </div>
+  <div class="field">
+    <%= f.label :airline_name %><br>
+    <%= f.text_field :airline_name %>
+  </div>
+  <div class="field">
+    <%= f.label :travel_date %><br>
+    <%= f.date_select :travel_date, start_date: Date.today %>
+  </div>
+   
+  <%= f.hidden_field :booking_date, value: Date.today %>
+  
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>

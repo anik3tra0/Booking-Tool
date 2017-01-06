@@ -1,0 +1,7 @@
+<h1>Hi, Welcome to Airline Ticket Booking System</h1>
+<h2>Tickets left - <%= 819979195 - Booking.all.size %></h2>
+<% if user_signed_in? %>
+	<h2><%= link_to "Book Now", new_booking_path %></h2>
+<% else %>
+	<h2><%= link_to "Login", new_user_session_path %> now to book your ticket!</h2>
+<% end %>

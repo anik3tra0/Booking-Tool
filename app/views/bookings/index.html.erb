@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Bookings  <small><%= link_to "Book Now", new_booking_path %></small></h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>User name</th>
+      <th>Airline name</th>
+      <th>Travel date</th>
+      <th>Booking date</th>
+      <th>Booking number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.user_name %></td>
+        <td><%= booking.airline_name %></td>
+        <td><%= booking.travel_date %></td>
+        <td><%= booking.booking_date %></td>
+        <td><%= booking.booking_number %></td>
+        <td><%= link_to 'Show', booking %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
