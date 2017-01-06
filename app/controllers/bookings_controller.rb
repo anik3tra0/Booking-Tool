@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings.where('cancled == ?', false)
   end
 
   # GET /bookings/1
@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.booking_number = Booking.generate_booking_number
+    @booking.cancled = false
     @booking.user_id = current_user.id
 
     respond_to do |format|
@@ -62,6 +63,12 @@ class BookingsController < ApplicationController
       format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def cancel_booking
+    booking = Booking.find(params[:booking_id])
+    booking.update_attributes(cancled: true)
+    redirect_to bookings_path
   end
 
   private

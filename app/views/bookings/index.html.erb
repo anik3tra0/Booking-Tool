@@ -22,6 +22,9 @@
         <td><%= booking.travel_date %></td>
         <td><%= booking.booking_date %></td>
         <td><%= booking.booking_number %></td>
+        <% if booking.travel_date > Date.today %>
+          <td><%= link_to "Cancel", bookings_cancel_booking_path(booking_id: booking.id) %></td>
+        <% end %>
         <td><%= link_to 'Show', booking %></td>
       </tr>
     <% end %>
